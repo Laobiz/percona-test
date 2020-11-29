@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+
+  master:
+    image: master
+    restart: always
+    container_name: "percona_master"
+    ports:
+      - 4406:3306
+    networks:
+     - main
+
+  slave:
+    image: slave
+    restart: always
+    container_name: "percona_slave"
+    ports:
+      - 5506:3306
+    depends_on:
+     - master
+    environment:
+    - MASTER_IP="master"
+    networks:
+     - main
+
+networks:
+  main:
