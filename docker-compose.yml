@@ -20,7 +20,7 @@ services:
     depends_on:
      - master
     environment:
-    - MASTER_IP="master"
+     - MASTER_IP=master
     networks:
      - main
 
